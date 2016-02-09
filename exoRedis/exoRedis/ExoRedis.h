@@ -2,15 +2,23 @@
 #define EXOREDIS_H
 
 #include "ConfigManager.h"
+#include "CommandProcessor.h"
+
+#include <algorithm>
 
 class exoRadis
 {
 public:
-	exoRadis();
+	exoRadis(const std::string& filePath);
 	~exoRadis();
-private:
-	ConfigManager configManager;
+	void ProcessCMD(std::string& inputCMD);
 
+private:  	
+	void TokenizeCMD(const std::string& inputCMD);
+
+	// object containment
+	ConfigManager configManager;
+	CommandProcessor comndProcessor;
 };
 
 #endif

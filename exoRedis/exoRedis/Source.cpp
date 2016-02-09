@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ExoRedis.h"
 
-int main(int argc, char* argv)
+int main(int argc, char* argv[])
 {
    // argument validation 
 	if (argc < 2) 
@@ -11,9 +11,14 @@ int main(int argc, char* argv)
 		return 1;
 	}
 
-	exoRadis exor;
+	std::string filePath(argv[1]); 
+	exoRadis exor(filePath);
 
-	std::cin.get();
+	std::string lcmd;
+	std::getline(std::cin, lcmd);
+	std::cout << " cmd : " << lcmd << "\n";
+
+	exor.ProcessCMD(lcmd);
 
 	return 0;
 }
