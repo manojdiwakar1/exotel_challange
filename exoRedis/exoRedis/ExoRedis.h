@@ -11,13 +11,14 @@ class exoRadis
 public:
 	exoRadis(const std::string& filePath);
 	~exoRadis();
-	void ProcessCMD(std::string& inputCMD);
+	void ProcessCMD(const std::string& inputCMD);
+	void LoadDataFromFile();
 
-private:  	
-	void TokenizeCMD(const std::string& inputCMD);
+private:  
+	void executeCMD(const std::string& inputCMD);		
 
 	// object containment
-	ConfigManager configManager;
+	ConfigManager* configManager;
 	CommandProcessor comndProcessor;
 };
 

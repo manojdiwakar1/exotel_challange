@@ -13,12 +13,21 @@ int main(int argc, char* argv[])
 
 	std::string filePath(argv[1]); 
 	exoRadis exor(filePath);
+	exor.LoadDataFromFile();
 
 	std::string lcmd;
-	std::getline(std::cin, lcmd);
-	std::cout << " cmd : " << lcmd << "\n";
-
-	exor.ProcessCMD(lcmd);
+	while (std::getline(std::cin, lcmd))
+	{
+		if (!lcmd.empty())
+		{
+			std::cout << " cmd : " << lcmd << "\n";
+			exor.ProcessCMD(lcmd);
+		}
+		else
+		{
+			break;
+		}
+	}
 
 	return 0;
 }
