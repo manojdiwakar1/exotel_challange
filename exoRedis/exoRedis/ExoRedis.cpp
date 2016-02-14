@@ -1,16 +1,35 @@
 
 #include "ExoRedis.h"
 
-exoRadis::exoRadis(const std::string& filePath) : configManager(filePath)
+exoRadis::exoRadis(const std::string& filePath) 
 {
+	configManager = ConfigManager::getInstance();
+	configManager->SetFilePath(filePath);
 }
 
 
 exoRadis::~exoRadis()
 {	
+	configManager->releaseInstance();
 } 
 
-void exoRadis::ProcessCMD(std::string& inputCMD)
+void exoRadis::ProcessCMD(const std::string& inputCMD)
 {
-	comndProcessor.ProcessCMD(inputCMD);
+	if (comndProcessor.ProcessCMD(inputCMD))
+	{
+		executeCMD(inputCMD);
+	}
+	else
+	{
+	}
+}
+
+void exoRadis::executeCMD(const std::string& inputCMD)
+{	
+	comndProcessor.executeCMD(inputCMD);
+}
+
+void exoRadis::LoadDataFromFile()
+{
+	configManager->ReadFromFile();
 }
