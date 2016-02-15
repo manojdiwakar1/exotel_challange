@@ -18,7 +18,7 @@ public:
 	void Write(const std::string& writeData);
 	void Close();
 
-	std::map<std::string, std::multimap<int, std::string>> Read();
+	std::map<std::string, std::multimap<int, std::string> > Read();
 private:
 	std::string fileData;
 	std::fstream fileStream;
