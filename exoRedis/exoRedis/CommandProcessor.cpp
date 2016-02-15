@@ -162,14 +162,14 @@ void CommandProcessor::executeZcountCmd(const std::string& inputCMD)
 
 	if (!cmdTokens.at(2).compare("-inf") && cmdTokens.at(3).compare("-inf"))
 	{
-		executeZcardCmd(cmdTokens.at(1));
+		std::string cmd = "ZCARD " + cmdTokens.at(1);
+		executeZcardCmd(cmd);
 	}
 	if (IsValidInt(cmdTokens.at(2).c_str()) && IsValidInt(cmdTokens.at(3).c_str()))
 	{
 		keyCount = configManager->KeyCount(cmdTokens.at(1), cmdTokens.at(2), cmdTokens.at(3));
-	}	
-	
-	std::cout << "\n " << keyCount << "\n";
+		std::cout << "\n " << keyCount << "\n";
+	}
 }
 
 bool CommandProcessor::IsValidInt(const char* x)
